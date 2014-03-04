@@ -1,7 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+  Clase Imagen
  */
+ 
 package ufps.negocio;
 
 import ufps.util.Secuencia;
@@ -11,12 +11,24 @@ import ufps.util.Secuencia;
  * @author FERNEY JARAMILLO VEGA-1150671
  * @author VALERIA GABRIELA SALAZAR-1150674
  */
+ 
+ /**
+  * La clase Imagen tiene un atributo Secuencia de tipo FilaColor
+  */
+  
 public class Imagen {
  Secuencia <FilaColor> filaColores ;
   
- 
+ /**
+  * Constructor vacio de la clase Imagen
+  * 
+  */
  public Imagen() {
     }
+    
+    /**
+     * Constructor de la clase Imagen parametrizado
+     */
     public Imagen (int n , int m){
     
         filaColores = new Secuencia <FilaColor> (n) ;
@@ -30,6 +42,10 @@ public class Imagen {
         
     }
     
+    /**
+     * Método que  permite crear el marco a la Imagen
+     * 
+     */
     public void crearMarco (){
    
         int ultimo = filaColores.get(0).getPixeles().length()-1;
@@ -61,6 +77,9 @@ public class Imagen {
     
     }
     
+    /**
+     * Método que permite realizar cambio de filas (la primera con la última, la siguiente con la penúltima y asi sucesivamente)
+     */ 
     public void flipHorizontal(){
         int j=filaColores.length()-1;
         for (int i =0; i<filaColores.length()/2;i++,j--){
@@ -72,7 +91,9 @@ public class Imagen {
         }
         
     
-    
+    /**
+     * 
+     */ 
     public void invertirGama (String tipoColorRGB){
     
     
@@ -81,7 +102,11 @@ public class Imagen {
          
     
     }
-     
+    
+    /**
+     * Método que permite cortar una sección de la Imagen
+     * 
+     */ 
     public void cortar(int fila, int columna, int ancho, int alto) {
 
 
@@ -96,13 +121,19 @@ public class Imagen {
 
         }
     }
-
+    
+    /**
+     * Método set de la clase  Imagen que realiza el cambio respectivo de variable
+     */ 
     public void setFilaColores(Secuencia<FilaColor> val) {
 
         this.filaColores = val;
 
     }
-
+    
+    /**
+     * Método get de la clase Imagen
+     */ 
     public Secuencia<FilaColor> getFilaColores1() {
         return (this.filaColores);
 
