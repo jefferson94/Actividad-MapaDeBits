@@ -55,4 +55,39 @@ public class Pixel {
           this.setRgb(x);
           
       }
+      
+      public boolean isGamma( String val ){
+      
+          if (val.equalsIgnoreCase("rojo")){
+          
+              if (rgb.getRed()>= rgb.getGreen()|| rgb.getRed()>=rgb.getBlue()){
+              
+              return true;
+              
+              }
+          
+          }
+              
+       if (val.equalsIgnoreCase("Azul")){
+          
+              if (rgb.getBlue()>= rgb.getGreen()|| rgb.getBlue()>=rgb.getRed()){
+              
+              return true;
+              
+              }
+          
+          }
+      
+        if (val.equalsIgnoreCase("verde")){
+          
+              if (rgb.getGreen()>= rgb.getRed()|| rgb.getGreen()>=rgb.getBlue()){
+              
+              return true;
+              
+              }
+          
+          }
+        return false;
+      
+      }
 }

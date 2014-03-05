@@ -27,6 +27,7 @@ public class Imagen {
          
           
         }
+     
         
     }
     
@@ -41,10 +42,10 @@ public class Imagen {
             
         if (i==0  || i == filaColores.length()-1 ){
             
-            for ( int j= 0 ; j<filaColores.length();j++){
-         
+            for ( int j= 0 ; j<filaColores.get(i).getPixeles().length();j++){
+            
                 this.filaColores.get(i).getPixeles().get(j).cambiarANegro();
-     
+                 
             }
         }
         else {
@@ -75,9 +76,21 @@ public class Imagen {
     
     public void invertirGama (String tipoColorRGB){
     
+        for (int i = 0 ; i<filaColores.length();i++){
+        
+          for (int j = 0 ; i<filaColores.length();j++){
+          
+          filaColores.get(i).getPixeles().get(j).pintarEnGris();
+          }
+        
+        }
+        
+        
     
     }
      public void detectarPatron (String tipoColorRGB){
+         
+         
          
     
     }
