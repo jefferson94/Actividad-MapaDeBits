@@ -83,7 +83,8 @@ public class Imagen {
      */ 
     public void flipHorizontal(){
         int i=0;
-        int j=filaColores.get(i).getPixeles().length()-1;
+        int j=filaColores.get(i).getPixeles().length();
+        
         for (; i<filaColores.length()/2;i++,j--){
              FilaColor aux= filaColores.get(i);
          filaColores.set(i, filaColores.get(j));
