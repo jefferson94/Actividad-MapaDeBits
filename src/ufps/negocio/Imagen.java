@@ -82,8 +82,9 @@ public class Imagen {
      * Método que permite realizar cambio de filas (la primera con la última, la siguiente con la penúltima y asi sucesivamente)
      */ 
     public void flipHorizontal(){
-        int j=filaColores.length()-1;
-        for (int i =0; i<filaColores.length()/2;i++,j--){
+        int i=0;
+        int j=filaColores.get(i).length-1;
+        for (; i<filaColores.length()/2;i++,j--){
              FilaColor aux= filaColores.get(i);
          filaColores.set(i, filaColores.get(j));
          filaColores.set(j, aux);
@@ -99,7 +100,7 @@ public class Imagen {
     
         for (int i = 0 ; i<filaColores.length();i++){
         
-          for (int j = 0 ; i<filaColores.length();j++){
+          for (int j = 0 ; j<filaColores.length();j++){
           
           filaColores.get(i).getPixeles().get(j).pintarEnGris();
           }
