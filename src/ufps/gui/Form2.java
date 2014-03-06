@@ -4,7 +4,11 @@
  */
 package ufps.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ufps.util.ExceptionUFPS;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import sun.org.mozilla.javascript.internal.ast.ForInLoop;
 
 /**
@@ -98,8 +102,16 @@ public class Form2 extends javax.swing.JFrame {
 
         int filas = Integer.parseInt(jTextFilas.getText());
         int columnas = Integer.parseInt(jTextColumnas.getText());
-        Form3 h = new Form3(filas , columnas);
-        h.setVisible(true);
+       Form3 h;
+        try {
+            h = new Form3(filas , columnas);
+            h.setVisible(true);
+        } catch (ExceptionUFPS ex) {
+           JOptionPane.showMessageDialog(jTextColumnas, ex);
+        }
+        
+        
+        
         
     }//GEN-LAST:event_jButtonCrearActionPerformed
 

@@ -5,7 +5,7 @@
 package ufps.negocio;
 
 import ufps.util.Secuencia;
-
+import ufps.util.ExceptionUFPS;
 /**
  *
  * @author FERNEY JARAMILLO VEGA-1150671
@@ -29,8 +29,14 @@ public class Imagen {
     /**
      * Constructor de la clase Imagen parametrizado
      */
-    public Imagen (int n , int m){
+    public Imagen (int n , int m) throws ExceptionUFPS {
     
+        
+        if (n<0||n>50||m>50||m<0){
+        
+        throw new ExceptionUFPS("error no se puede crear , digite numeros menores de 50");
+        }
+        
         filaColores = new Secuencia <FilaColor> (n) ;
         
      for (int i = 0 ; i <filaColores.length(); i ++){
@@ -83,7 +89,7 @@ public class Imagen {
      */ 
     public void flipHorizontal(){
         int i=0;
-        int j=filaColores.get(i).pixeles.length()-1;
+    int j=filaColores.get(i).pixeles.length()-1;
         
         for (; i<filaColores.length()/2;i++,j--){
              FilaColor aux= filaColores.get(i);
@@ -123,9 +129,10 @@ public class Imagen {
      * Método que permite cortar una sección de la Imagen
      * 
      */ 
-    public void cortar(int fila, int columna, int ancho, int alto) {
+    public void cortar(int fila, int columna, int ancho, int alto) throws ExceptionUFPS{
 
-
+if (fila <0 || fila >0  ||  fila>this.filaColores.get(fila).getPixeles().length()|| fila >0  )
+        
         for (int i = fila; i < ancho + columna; i++) {
 
             for (int j = fila; j < fila + alto; j++) {
