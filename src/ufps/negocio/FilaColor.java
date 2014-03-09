@@ -1,5 +1,5 @@
 /*
- * 
+ * Clase Filacolor que representa una Secuencia de Pixeles.
  */
 package ufps.negocio;
 
@@ -15,12 +15,17 @@ public class FilaColor {
     Secuencia<Pixel> pixeles  ;
     
     
-    
+    /**
+     * Constructor vacio de la clase FilaColor.
+     */
     public FilaColor() {
-       
-   
-        //crea los pixeles
+     
     }
+    
+    /**
+     * Metodo contructor de la Clase FilaColor , recibe un entero para crear una nueva Secuencia de pixeles.
+     * @param filas 
+     */
     public FilaColor(int filas){
 
      this.pixeles= new Secuencia<Pixel>(filas);
@@ -34,14 +39,23 @@ public class FilaColor {
      }
 
 }
-    
+    /**
+     * Metodo get de la Clase Secuencia<pixel> que retorna la secuencia de pixeles actual.
+     * @return Secuencia 
+     */
     public Secuencia<Pixel> getPixeles(){
         return this.pixeles;
    
     }
-    
+    /**
+     * Metodo set de la clase Secuencia<pixel> que permite modificar la secuencia actual por una nueva.
+     * @param val 
+     */
     public void setPixeles (Secuencia<Pixel> val){
          this.pixeles=val;
     }
    
 }
+/**
+ * Fin De la Clase FilaColor
+ */

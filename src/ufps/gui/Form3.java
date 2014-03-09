@@ -5,7 +5,10 @@
 package ufps.gui;
 
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import ufps.negocio.Imagen;
@@ -28,8 +31,9 @@ public class Form3 extends javax.swing.JFrame {
            initComponents();
         imagen =new Imagen (filas , columnas);
         mYText= new JTextField[filas][columnas];
-       
+         this.setBounds(0,0,567,408);
         pintar();
+        
         this.setBounds(0, 0, 900, 600);
         this.setLocationRelativeTo(null);
        
@@ -38,20 +42,21 @@ public class Form3 extends javax.swing.JFrame {
     }
 
       private void pintar() {
-        this.setBounds(0,0,567,408);  
+     
+          //this.setBounds(0,0,567,408);  
        
         this.repaint();
         int x = 16;
         int y =20;
         
-        for (int i =0 ; i<this.imagen.getFilaColores1().length();i++){
+        for (int i =0 ; i<this.imagen.getFilaColores1().get(0).getPixeles().length();i++){
         
-            for (int j = 0; j < this.imagen.getFilaColores1().get(i).getPixeles().length(); j++) {
+            for (int j = 0; j < this.imagen.getFilaColores1().length(); j++) {
                 
-                this.mYText[i][j]= new JTextField();
-                this.mYText[i][j].setBackground(this.imagen.getFilaColores1().get(i).getPixeles().get(j).getRgb());
-                this.mYText[i][j].setBounds(x+(i*10), y+(j*10), 10, 10);
-                this.jPanel2.add(this.mYText[i][j]);
+                this.mYText[j][i]= new JTextField();
+                this.mYText[j][i].setBackground(this.imagen.getFilaColores1().get(j).getPixeles().get(i).getRgb());
+                this.mYText[j][i].setBounds(x+(i*10), y+(j*10), 10, 10);
+                this.jPanel2.add(this.mYText[j][i]);
                 
             }
         
@@ -67,13 +72,13 @@ public class Form3 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonCrearMarco = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButtonDetectarPatron = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonInvertirGamma = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButtonCrearMarco = new javax.swing.JButton();
         jButtonFlipHorizontal = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonRecortar = new javax.swing.JButton();
         jTextFieldFilasCortar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,8 +87,25 @@ public class Form3 extends javax.swing.JFrame {
         jTextFieldAltoRecortar = new javax.swing.JTextField();
         jTextFieldAnchoRecortar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jButtonDetectarPatron = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFielDetectarPatron = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldInvertirGamma = new javax.swing.JTextField();
+        jButtonInvertirGamma = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BMP");
+        setBackground(new java.awt.Color(255, 175, 175));
+        setMaximumSize(new java.awt.Dimension(738, 597));
+        setMinimumSize(new java.awt.Dimension(738, 597));
+        setPreferredSize(new java.awt.Dimension(859, 650));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButtonCrearMarco.setBackground(new java.awt.Color(153, 153, 255));
         jButtonCrearMarco.setText("CREAR MARCO");
@@ -92,25 +114,6 @@ public class Form3 extends javax.swing.JFrame {
                 jButtonCrearMarcoActionPerformed(evt);
             }
         });
-
-        jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("RECORTAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButtonDetectarPatron.setBackground(new java.awt.Color(0, 0, 255));
-        jButtonDetectarPatron.setText("DETECTAR PATRON");
-        jButtonDetectarPatron.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDetectarPatronActionPerformed(evt);
-            }
-        });
-
-        jButtonInvertirGamma.setBackground(new java.awt.Color(51, 255, 51));
-        jButtonInvertirGamma.setText("INVERTIR GAMMA");
 
         jButtonFlipHorizontal.setBackground(new java.awt.Color(102, 0, 102));
         jButtonFlipHorizontal.setText("FLIP HORIZONTAL");
@@ -124,12 +127,22 @@ public class Form3 extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGap(0, 531, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
+            .addGap(0, 538, Short.MAX_VALUE)
         );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButtonRecortar.setBackground(new java.awt.Color(204, 0, 0));
+        jButtonRecortar.setText("RECORTAR");
+        jButtonRecortar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRecortarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("FILA:");
 
@@ -151,121 +164,271 @@ public class Form3 extends javax.swing.JFrame {
 
         jLabel5.setText("ANCHO:");
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jTextFieldAltoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addGap(16, 16, 16)
+                                .addComponent(jTextFieldAnchoRecortar))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jTextFieldFilasCortar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldColumnaRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(17, 17, 17))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldFilasCortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldColumnaRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldAltoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldAnchoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRecortar)
+                .addContainerGap())
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButtonDetectarPatron.setBackground(new java.awt.Color(0, 0, 255));
+        jButtonDetectarPatron.setText("DETECTAR PATRON");
+        jButtonDetectarPatron.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDetectarPatronActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("COLOR A DETECTAR");
+
+        jTextFielDetectarPatron.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFielDetectarPatronActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFielDetectarPatron, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jButtonDetectarPatron, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel6)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFielDetectarPatron, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonDetectarPatron)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel7.setText("COLOR A INVERTIR");
+
+        jTextFieldInvertirGamma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldInvertirGammaActionPerformed(evt);
+            }
+        });
+
+        jButtonInvertirGamma.setBackground(new java.awt.Color(51, 255, 51));
+        jButtonInvertirGamma.setText("INVERTIR GAMMA");
+        jButtonInvertirGamma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInvertirGammaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTextFieldInvertirGamma)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 47, Short.MAX_VALUE)
+                        .addComponent(jButtonInvertirGamma)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldInvertirGamma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonInvertirGamma)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("VOLVER A CREAR MAPA DE PIXELES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCrearMarco, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonFlipHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(68, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonCrearMarco)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonFlipHorizontal)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(46, 46, 46)
-                        .addComponent(jButtonCrearMarco, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextFieldFilasCortar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldColumnaRecortar))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButtonFlipHorizontal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonInvertirGamma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldAltoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel5))
-                                        .addComponent(jButtonDetectarPatron, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldAnchoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(51, 52, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(701, 701, 701)
+                .addComponent(jLabel1)
+                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(228, 228, 228))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jButtonCrearMarco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton2)
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldFilasCortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldColumnaRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldAltoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextFieldAnchoRecortar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDetectarPatron)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButtonInvertirGamma)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonFlipHorizontal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCrearMarcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearMarcoActionPerformed
-        
-        this.imagen.crearMarco();
-        repintar();
-    }//GEN-LAST:event_jButtonCrearMarcoActionPerformed
+    private void jButtonInvertirGammaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInvertirGammaActionPerformed
+        // TODO add your handling code here:
+        String color = (jTextFieldInvertirGamma.getText());
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        
-        int filas = Integer.parseInt(jTextFieldFilasCortar.getText());
-        int columnas = Integer.parseInt(jTextFieldColumnaRecortar.getText());
-        int ancho= Integer.parseInt(jTextFieldAnchoRecortar.getText());
-        int alto= Integer.parseInt(jTextFieldAltoRecortar.getText());
-       
-        this.imagen.cortar(filas, columnas, ancho, alto);
+        this.imagen.invertirGama(color);
         repintar();
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButtonInvertirGammaActionPerformed
+
+    private void jTextFieldInvertirGammaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInvertirGammaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldInvertirGammaActionPerformed
+
+    private void jTextFielDetectarPatronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielDetectarPatronActionPerformed
+        String color = (jTextFielDetectarPatron.getText());
+
+        this.imagen.detectarPatron(color);
+        repintar();
+
+    }//GEN-LAST:event_jTextFielDetectarPatronActionPerformed
 
     private void jButtonDetectarPatronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetectarPatronActionPerformed
-        this.imagen.flipHorizontal();
+
+        String color = jTextFielDetectarPatron.getText();
+
+        this.imagen.detectarPatron(color);
         repintar();
+
     }//GEN-LAST:event_jButtonDetectarPatronActionPerformed
+
+    private void jTextFieldAnchoRecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnchoRecortarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnchoRecortarActionPerformed
 
     private void jTextFieldColumnaRecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldColumnaRecortarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldColumnaRecortarActionPerformed
 
-    private void jTextFieldAnchoRecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnchoRecortarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnchoRecortarActionPerformed
+    private void jButtonRecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecortarActionPerformed
+
+        int filas = Integer.parseInt(jTextFieldFilasCortar.getText());
+        int columnas = Integer.parseInt(jTextFieldColumnaRecortar.getText());
+        int ancho= Integer.parseInt(jTextFieldAnchoRecortar.getText());
+        int alto= Integer.parseInt(jTextFieldAltoRecortar.getText());
+
+        this.imagen.cortar(filas, columnas, ancho, alto);
+        repintar();
+
+    }//GEN-LAST:event_jButtonRecortarActionPerformed
 
     private void jButtonFlipHorizontalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFlipHorizontalActionPerformed
         // TODO adthis.imagen.flipHorizontal();
@@ -273,28 +436,52 @@ public class Form3 extends javax.swing.JFrame {
         repintar();
     }//GEN-LAST:event_jButtonFlipHorizontalActionPerformed
 
+    private void jButtonCrearMarcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearMarcoActionPerformed
+
+        this.imagen.crearMarco();
+        repintar();
+    }//GEN-LAST:event_jButtonCrearMarcoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         Form2 k;
+        k = new Form2();
+        k.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCrearMarco;
     private javax.swing.JButton jButtonDetectarPatron;
     private javax.swing.JButton jButtonFlipHorizontal;
     private javax.swing.JButton jButtonInvertirGamma;
+    private javax.swing.JButton jButtonRecortar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField jTextFielDetectarPatron;
     private javax.swing.JTextField jTextFieldAltoRecortar;
     private javax.swing.JTextField jTextFieldAnchoRecortar;
     private javax.swing.JTextField jTextFieldColumnaRecortar;
     private javax.swing.JTextField jTextFieldFilasCortar;
+    private javax.swing.JTextField jTextFieldInvertirGamma;
     // End of variables declaration//GEN-END:variables
 
     private void repintar() {
       this.jPanel2.removeAll();
-        this.repaint();
+        this.pintar();
+        /**
        for (int i =0 ; i<this.imagen.getFilaColores1().length();i++){
         
             for (int j = 0; j < this.imagen.getFilaColores1().get(i).getPixeles().length(); j++) {
@@ -303,10 +490,11 @@ public class Form3 extends javax.swing.JFrame {
                 this.mYText[i][j].setBackground(this.imagen.getFilaColores1().get(i).getPixeles().get(j).getRgb());
                 this.mYText[i][j].setBounds(16+(i*10), 20+(j*10), 10, 10);
                 this.jPanel2.add(this.mYText[i][j]);
-                
             }
         
        }
+       */
+        
        this.repaint();
        
        
