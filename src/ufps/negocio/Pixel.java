@@ -88,7 +88,7 @@ public class Pixel {
               
        if (val.equalsIgnoreCase("Azul")){
           
-              if (rgb.getBlue()>= rgb.getGreen()&& rgb.getBlue()>=rgb.getRed()){
+              if (rgb.getBlue()> rgb.getGreen()&& rgb.getBlue()>rgb.getRed()){
               
                   
               return true;
@@ -99,7 +99,7 @@ public class Pixel {
       
         if (val.equalsIgnoreCase("verde")){
           
-              if (rgb.getGreen()>= rgb.getRed()&& rgb.getGreen()>=rgb.getBlue()){
+              if (rgb.getGreen()> rgb.getRed()&& rgb.getGreen()>=rgb.getBlue()){
               
               return true;
               

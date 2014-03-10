@@ -108,21 +108,16 @@ public class Imagen {
     * Metodo que permite cambiar a su gamma de grises un color.
     * @param tipoColorRGB : color al cual deseamos convertir a su escala de grises.
     */
-    public void invertirGama (String tipoColorRGB){
+    public void invertirGama (String tipoColorRGB) throws ExceptionUFPS{
+        if(!(tipoColorRGB.equalsIgnoreCase("rojo")||!(tipoColorRGB.equalsIgnoreCase("azul"))||!(tipoColorRGB.equalsIgnoreCase("verde")))){
+            
+            throw  new ExceptionUFPS("El color debe ser ROJO,VERDE o AZUL");
+        }
     
       
        for (int i = 0 ; i<filaColores.length();i++){
-        
-          for (int j = 0 ; j<filaColores.length();j++){
-            
-               
-             boolean c =filaColores.get(i).getPixeles().get(j).isGamma(tipoColorRGB);
-         if (c )
-         {
-                 filaColores.get(i).getPixeles().get(j).pintarEnGris();
-         }
-         
-             }
+         this.filaColores.get(i).invertirGamma(tipoColorRGB);
+          
       }
       }
     /**
@@ -136,33 +131,16 @@ public class Imagen {
 //         if (!(tipoColorRGB.equalsIgnoreCase("rojo"))||!(tipoColorRGB.equalsIgnoreCase("Azul"))||!(tipoColorRGB.equalsIgnoreCase("verde"))){
 //         throw new ExceptionUFPS("Solo se puede detectar los colores Azul , verde , rojo");
 //         }
-         int cont =1 ;
-           for (int i = 0 ; i<filaColores.length();i++){
-           
-               int indice = i ;
-              for (int j = 0 ; j<filaColores.length();j++){
-            boolean c =filaColores.get(i).getPixeles().get(j).isGamma(tipoColorRGB);
-            if (c){
-                
-                cont ++;
-            }
-       
-              }
-              if ( cont >=2 ){
-              
-              for (int x =indice ; x <cont + indice-1 ;x ++){
-              
-              this.getFilaColores1().get(i).getPixeles().get(x).cambiarABlanco();
-              
-              }
-              
-              
-              }
-              else 
-                  cont =1 ;
+        
+         for ( int i =0; i<this.filaColores.length();i++){
+               this.filaColores.get(i).detectarPatron(tipoColorRGB);
+         
+         
+         }
            }
         
-     }
+     
+     
    
     /**
      * Método que permite cortar una sección de la Imagen
@@ -172,8 +150,12 @@ public class Imagen {
      * @param alto :numero de pixeles que se desean cortar 
      * 
      */ 
-    public void cortar(int fila, int columna, int ancho, int alto){
+    public void cortar(int fila, int columna, int ancho, int alto)throws ExceptionUFPS{
 
+if (fila<0|| fila>this.filaColores.length()|| fila+alto>=this.filaColores.length()||columna<0||columna>this.filaColores.get(0).getPixeles().length()|| columna+ancho>=this.filaColores.get(0).getPixeles().length()){
+
+throw new ExceptionUFPS("Valor fuera de Rango");
+}
 
         
         for (int i = fila; i < ancho + columna; i++) {
